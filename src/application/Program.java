@@ -1,10 +1,11 @@
 package application;
 
+import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
 import model.entities.Account;
-import model.exceptions.DomainException;
+import model.exceptions.BusinessException;
 
 public class Program {
 
@@ -34,11 +35,14 @@ public class Program {
 			account.withdraw(amountWithdraw);
 			System.out.println(account);
 		}
-		catch (DomainException e) {
+		catch (BusinessException e) {
 			System.out.println("Withdraw error: " + e.getMessage());
 		}
+		catch(InputMismatchException e) {
+			System.out.println("Invalid number format");
+		}
+		
 		sc.close();
 
 	}
-
 }
